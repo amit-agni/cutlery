@@ -6,10 +6,14 @@
 #' @param x Date for which the fiscal quarter is desired
 #' @param fiscal_start The month in which the fiscal year begins e.g 7 for Australia
 #' @return numeric vector with the fiscal year and the quarter
+#'
+#' @family data time functions
 #' @seealso \url{https://github.com/tidyverse/lubridate/issues/682}  for the original issue
 #' @export
 #' @examples
 #' fiscal_quarter(Sys.Date())
+
+
 
 fiscal_quarter <- function(x, fiscal_start = 1) {
     fs <- fiscal_start - 1

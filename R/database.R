@@ -1,5 +1,5 @@
-#' Runs the query given in a text file on  postgreSQL database
-#'
+#' @title Runs the query given in a text file on  postgreSQL database
+#' @description
 #' Connects to postgresSQL database and runs the query given in the specified file.
 #' Also, stores the results in a .RDS file in the same location as the sqlFilePath
 #' Possible enhancements : Option to not store as RDS
@@ -58,8 +58,9 @@ runSQLinFile <- function(sqlFilePath,readFromRds,bkpExisting=T,user = NA,passwor
 }
 
 
-#' Runs the query given as sqlText string
+#' @title Runs the query given as sqlText string
 #'
+#' @description
 #' Connects to postgresSQL database and runs the query given in the string.
 #' Possible enhancements : Store as RDS
 #'

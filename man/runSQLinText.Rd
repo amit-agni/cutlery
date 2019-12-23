@@ -27,7 +27,7 @@ Possible enhancements : Store as RDS
 runPostgreSQL_asText(sqlText = "select * from table limit 19",user = "",password="",readFromRds = F,dbname = "dw",host = "dwserver", port = 5050)
 }
 \seealso{
-\code{\link{runPostgreSQL_inFile}}
+\code{\link{runSQLinFile}}
 
 Other database functions: 
 \code{\link{runSQLinFile}()}

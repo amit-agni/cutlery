@@ -24,3 +24,4 @@ fiscal_quarter(Sys.Date())
 \seealso{
 \url{https://github.com/tidyverse/lubridate/issues/682}  for the original issue
 }
+\concept{data time functions}

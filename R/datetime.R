@@ -1,5 +1,6 @@
-#' Assign fiscal quarter to a date
+#' @title Assign fiscal quarter to a date
 #'
+#' @description
 #' Returns the fiscal quarter for the given date. This function is a modified version of lubridate::quarter.
 #' The original function had an issue and the solution was copied from \url{https://github.com/tidyverse/lubridate/issues/682}
 #'

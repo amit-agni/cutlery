@@ -32,6 +32,9 @@ runSQLinFile(
 
 \item{port}{database port}
 }
+\value{
+data.table
+}
 \description{
 Connects to postgresSQL database and runs the query given in the specified file.
 Also, stores the results in a .RDS file in the same location as the sqlFilePath
@@ -41,7 +44,7 @@ Possible enhancements : Option to not store as RDS
 runPostgreSQL_inFile(sqlFileName = here("SQL_get-dates.sql"),user = "",password="",readFromRds = F,dbname = "dw",host = "dwserver", port = 5050)
 }
 \seealso{
-\code{\link{runPostgreSQL_asText}}
+\code{\link{runSQLinText}}
 
 Other database functions: 
 \code{\link{runSQLinText}()}

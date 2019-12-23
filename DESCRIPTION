@@ -4,9 +4,8 @@ Title: Collection of helper functions
 Version: 0.1.0
 Author: Amit Agni
 Maintainer:  Amit Agni <amitagni2@gmail.com>
-Description: cutlery is a collection of functions that are used for common repetitive tasks.
-    Some of these functions are modifications to the functions from the already existing CRAN/github packages. 
-    Planning to progresively build the package
+Description: Collection of functions used for performing common repetitive tasks. Convert columns to factors, get fiscal year, query postgreSQL, write to clipboard    
+    DISCLAIMER : Some of these functions are modifications to the functions from the already existing CRAN/github packages.     
 License: GPL-3
 Encoding: UTF-8
 LazyData: true
@@ -19,7 +18,8 @@ Imports:
 	DBI,
 	svDialogs,
 	data.table,
-	here
+	here,
+	xfun
 Suggests: 
     testthat
 

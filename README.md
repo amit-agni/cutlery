@@ -45,5 +45,7 @@ DT <- data.frame(c1=c("a","b","c")
 DT <- DTconvert2factor(DT,"int")
 
 ```
+**Notes**
+* The repo folder is stored in Onedrive and sync'd on Mac and Windows. There were issues due to the different line endings on both the platforms. Windows adds CRLF whereas Mac adds LF. So when the repo was commited on Windows and Onedrive was sync'd, on Mac it would recognise the line endings as modified changes. This was solve using ![Source](https://help.github.com/en/github/using-git/configuring-git-to-handle-line-endings#refreshing-a-repository-after-changing-line-endings)
 
 **DISCLAIMER :** Some of these functions are modifications to the functions from the already existing CRAN/github packages. For example the `cutlery::fiscal_quarter()` is a modified version of `lubridate::quarter()`   

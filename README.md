@@ -28,7 +28,7 @@ devtools::install_github("amit-agni/cutlery")
 * runSQLinText	    : Runs the query given as sqlText string
 * to_na	            : replace NaN and Inf with NA
 * write2clip	      : Write to clipboard
-* outlookSend       : Send email using outlook
+* outlookSend       : Send email using outlook (VBA/vbscript)
 
 
 ## Example

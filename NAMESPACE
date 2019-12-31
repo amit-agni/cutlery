@@ -3,6 +3,7 @@
 export(DTconvert2factor)
 export(fiscal_quarter)
 export(killProcess)
+export(outlookSend)
 export(runSQLinFile)
 export(runSQLinText)
 export(to_na)

@@ -4,12 +4,10 @@
 \alias{runSQLinText}
 \title{Runs the query given as sqlText string}
 \usage{
-runSQLinText(sqlText, user = NA, password = NA, dbname, host, port)
+runSQLinText(sqlText, username = NA, password = NA, dbname, host, port)
 }
 \arguments{
 \item{sqlText}{Sql query}
-
-\item{user}{database user name, if not provided will be prompted}
 
 \item{password}{database passowrd, if not provided will be prompted}
 
@@ -18,6 +16,8 @@ runSQLinText(sqlText, user = NA, password = NA, dbname, host, port)
 \item{host}{database host name}
 
 \item{port}{database port}
+
+\item{user}{database user name, if not provided will be prompted}
 }
 \description{
 Connects to postgresSQL database and runs the query given in the string.

@@ -6,9 +6,10 @@
 \usage{
 runSQLinFile(
   sqlFilePath,
-  readFromRds,
-  bkpExisting = T,
-  user = NA,
+  RDSpath = NA,
+  readFromRds = TRUE,
+  bkpExisting = TRUE,
+  username = NA,
   password = NA,
   dbname,
   host,
@@ -18,11 +19,13 @@ runSQLinFile(
 \arguments{
 \item{sqlFilePath}{Location of the Sql file}
 
+\item{RDSpath}{Alternate path to store the RDS file, else RDS will be stored in the same location as the sqlFilePath. If readFromRds, the RDS will be read from this location}
+
 \item{readFromRds}{Looks for the .Rds file in the same path as sqlFilePath}
 
 \item{bkpExisting}{Backup the existing RDS file}
 
-\item{user}{database user name, if not provided will be prompted}
+\item{username}{database user name, if not provided will be prompted}
 
 \item{password}{database passowrd, if not provided will be prompted}
 
@@ -37,7 +40,7 @@ data.table
 }
 \description{
 Connects to postgresSQL database and runs the query given in the specified file.
-Also, stores the results in a .RDS file in the same location as the sqlFilePath
+Also, stores the results in a .RDS file in the same location as the sqlFilePath (or in RDSpath)
 Possible enhancements : Option to not store as RDS
 }
 \examples{

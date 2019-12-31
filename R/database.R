@@ -1,12 +1,13 @@
 #' @title Runs the query given in a text file on  postgreSQL database
 #' @description
 #' Connects to postgresSQL database and runs the query given in the specified file.
-#' Also, stores the results in a .RDS file in the same location as the sqlFilePath
+#' Also, stores the results in a .RDS file in the same location as the sqlFilePath (or in RDSpath)
 #' Possible enhancements : Option to not store as RDS
 #' @param sqlFilePath Location of the Sql file
+#' @param RDSpath Alternate path to store the RDS file, else RDS will be stored in the same location as the sqlFilePath. If readFromRds, the RDS will be read from this location
 #' @param readFromRds Looks for the .Rds file in the same path as sqlFilePath
 #' @param bkpExisting Backup the existing RDS file
-#' @param user database user name, if not provided will be prompted
+#' @param username database user name, if not provided will be prompted
 #' @param password database passowrd, if not provided will be prompted
 #' @param dbname database name
 #' @param host database host name
@@ -22,12 +23,19 @@
 #' runPostgreSQL_inFile(sqlFileName = here("SQL_get-dates.sql"),user = "",password="",readFromRds = F,dbname = "dw",host = "dwserver", port = 5050)
 
 
-runSQLinFile <- function(sqlFilePath,readFromRds,bkpExisting=T,user = NA,password= NA,dbname,host, port)
+
+runSQLinFile <- function(sqlFilePath,RDSpath=NA,readFromRds=TRUE,bkpExisting=TRUE,username = NA,password= NA,dbname,host, port)
 {
 
-  #pacman::p_load(RPostgreSQL,getPass,DBI,svDialogs,data.table)
+  if(!require(pacman)) { install.packages("pacman"); library(pacman)}
+  pacman::p_load(RPostgreSQL,getPass,DBI,svDialogs,data.table)
 
-  fnameRds <- paste(tools::file_path_sans_ext(sqlFilePath),".Rds",sep="")
+  if(is.na(RDSpath)){
+    fnameRds <- paste(tools::file_path_sans_ext(sqlFilePath),".Rds",sep="")
+  }else{
+    fnameRds <- paste(RDSpath,"/",tools::file_path_sans_ext(basename(sqlFilePath)),".Rds",sep="")
+  }
+
 
   if(readFromRds == TRUE){
     if(!file.exists(fnameRds)){
@@ -37,22 +45,25 @@ runSQLinFile <- function(sqlFilePath,readFromRds,bkpExisting=T,user = NA,passwor
     }
   }else{
 
-    con <- .getConnection(dbname = dbname,host = host, port = port,user = user,password = password)
+    con <- .getConnection(dbname = dbname,host = host, port = port,user = username,password = password)
     qry <- .getSQL(sqlFilePath)
     DT <- DBI::dbGetQuery(con, qry)
 
-  }
+    dbDisconnect(con)
+    setDT(DT)
+    saveRDS(DT,file=fnameRds)
 
-  dbDisconnect(con)
-  setDT(DT)
+  }
 
   #Backup the existing file
-  if(bkpExisting) {
+  if(bkpExisting == TRUE) {
     file.copy(fnameRds,paste0(tools::file_path_sans_ext(fnameRds)
                               ,strftime(Sys.time(), format="_Bkp_%Y%m%d_%H%M%S.Rds")))
+
   }
 
-  saveRDS(DT,file=fnameRds)
+
+
   return(DT)
 
 }
@@ -77,12 +88,13 @@ runSQLinFile <- function(sqlFilePath,readFromRds,bkpExisting=T,user = NA,passwor
 #' @export
 #' @examples
 #' runPostgreSQL_asText(sqlText = "select * from table limit 19",user = "",password="",readFromRds = F,dbname = "dw",host = "dwserver", port = 5050)
-runSQLinText <- function(sqlText,user = NA,password= NA,dbname,host, port)
+runSQLinText <- function(sqlText,username = NA,password= NA,dbname,host, port)
 {
 
+  if(!require(pacman)) { install.packages("pacman"); library(pacman)}
   pacman::p_load(RPostgreSQL,getPass,DBI,svDialogs,data.table)
 
-  con <- .getConnection(dbname = dbname,host = host, port = port,user = user,password = password)
+  con <- .getConnection(dbname = dbname,host = host, port = port,user = username,password = password)
   DT <- DBI::dbGetQuery(con, sqlText)
 
   dbDisconnect(con)

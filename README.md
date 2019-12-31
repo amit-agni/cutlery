@@ -7,7 +7,7 @@
 
 <!-- badges: end -->
 
-Collection of functions used for performing range of common tasks. Convert columns to factors, get fiscal year from a date, query postgreSQL database, write to clipboard, send email from Outlook, kill a windows process
+Collection of functions used for performing range of common tasks. Convert columns to factors, get fiscal year from a date, query postgreSQL database, write to clipboard, send email from Outlook, kill a windows process, a ggplot theme
 
 All contributions are welcome
 
@@ -18,6 +18,10 @@ The package is not available on CRAN but can be installed from GitHub
 ``` r
 devtools::install_github("amit-agni/cutlery")
 ```
+**Notes**
+* During installation, you may get an error that a dependency package is not available. In such cases, install the mentioned packages and then install cutlery
+  + For example : ERROR: dependency ‘DBI’ is not available for package ‘cutlery’
+
 
 ### Currently implemented functions
 
@@ -29,6 +33,7 @@ devtools::install_github("amit-agni/cutlery")
 * to_na	            : replace NaN and Inf with NA
 * write2clip	      : Write to clipboard
 * outlookSend       : Send email using outlook (VBA/vbscript)
+* theme_darklightmix : A ggplot theme
 
 
 ## Example

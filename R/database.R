@@ -49,7 +49,7 @@ runSQLinFile <- function(sqlFilePath,RDSpath=NA,readFromRds=TRUE,bkpExisting=TRU
     qry <- .getSQL(sqlFilePath)
     DT <- DBI::dbGetQuery(con, qry)
 
-    dbDisconnect(con)
+    DBI::dbDisconnect(con)
     setDT(DT)
     saveRDS(DT,file=fnameRds)
 
@@ -97,8 +97,8 @@ runSQLinText <- function(sqlText,username = NA,password= NA,dbname,host, port)
   con <- .getConnection(dbname = dbname,host = host, port = port,user = username,password = password)
   DT <- DBI::dbGetQuery(con, sqlText)
 
-  dbDisconnect(con)
-  setDT(DT)
+  DBI::dbDisconnect(con)
+  data.table::setDT(DT)
 
   return(DT)
 
